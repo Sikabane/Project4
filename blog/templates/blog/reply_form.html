@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+
+{% block title %} Commrent form | {{ block.super }}{% endblock %}
+{% block description %}Comment{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="row">
+    <main class="col-md-8">
+      <h1 class="mb-4">comment form</h1>
+      <p>To: {{ comment.author }}</p>
+      <p class="text-black-50">{{ comment.text|linebreaksbr }}</p>
+      <form method="POST">{% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-primary">send</button>
+      </form>
+    </main>
+    <aside class="col-md-4">
+      {% include "blog/snippets/sidebar.html" %}
+    </aside>
+  </div>
+</div>
+{% endblock %}
